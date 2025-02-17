@@ -35,6 +35,32 @@ const bookClass = async (
   return result;
 };
 
+const getBookings = async (email?: string) => {
+  if (email) {
+    return await bookingModel.find({ email: email });
+  }
+};
+const cancelBooking = async (scheduleId: string, email?: string) => {
+  const schedule = await scheduleModel.findById(scheduleId);
+  if (!schedule) {
+    throw new Error("Schedule not found");
+  }
+  const updatedTrainees = schedule.trainees.filter(
+    (trainee) => trainee.email !== email
+  );
+
+  if (updatedTrainees.length === schedule.trainees.length) {
+    throw new Error("Trainee not found in this schedule");
+  }
+  schedule.trainees = updatedTrainees;
+  await schedule.save();
+
+  const result = await bookingModel.findOneAndDelete({ scheduleId, email });
+  return result;
+};
+
 export const traineeDB = {
   bookClass,
+  getBookings,
+  cancelBooking,
 };

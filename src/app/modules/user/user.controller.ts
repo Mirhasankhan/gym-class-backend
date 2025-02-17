@@ -11,10 +11,10 @@ const addNewUser = async (req: Request, res: Response) => {
       message: "User created successfully",
       data: result,
     });
-  } catch (err) {
+  } catch (err: any) {
     res.status(200).json({
       success: false,
-      message: `something went wrong`,
+      message: `$${err.message}`,
     });
   }
 };
@@ -32,10 +32,10 @@ const loginUser = async (req: Request, res: Response) => {
         token,
       },
     });
-  } catch (err) {
+  } catch (err: any) {
     res.status(400).json({
       success: false,
-      message: "Something went wrong",
+      message: `${err.message}`,
     });
   }
 };
