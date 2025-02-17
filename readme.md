@@ -58,13 +58,13 @@ User Schema--
 
 Admin Credentials
 
-- Username: admin@gmail.com, Password: 123456
+- email: admin@gmail.com, Password: 123456
 
 Instructions To Run Locally
 
-git clone https://github.com/Mirhasankhan/gym-class-backend
-cd your-repo
-npm install
-setup .env file (mongodb url, jwt secret)
-npm run build
-node ./dist/server.js
+- git clone https://github.com/Mirhasankhan/gym-class-backend
+- cd your-repo
+- npm install
+- setup .env file (mongodb url, jwt secret)
+- npm run build
+- node ./dist/server.js
